@@ -2,13 +2,13 @@ const elementCompanion = document.getElementById("document-companion");
 elementCompanion.classList.add("intro-panel");
 elementCompanion.classList.add("make-invisible");
 
-window.catexcompanion = {}
+window.catex = {}
 
-window.catexcompanion.app = {
+window.catex.app = {
     onAppReady: () => {
         console.log("App is ready!");
         elementCompanion.classList.remove("make-invisible");
-        window.catexcompanion.workspace.emitCommand(CommandInitialWorkspace)
+        window.catex.workspace.emitCommand(CommandInitialWorkspace)
     },
     navbarActions: [
         {
@@ -17,7 +17,7 @@ window.catexcompanion.app = {
             title: "Trigger an action",
             action: function(o, callback) {
                 const command = SampleCommand;
-                window.catexcompanion.workspace.emitCommand(command);
+                window.catex.workspace.emitCommand(command);
                 callback();
             }
         },       
@@ -39,12 +39,22 @@ window.catexcompanion.app = {
                 callback();
             }
         },
+        {
+            id: "navac-4",
+            label: "Open Cities",
+            title: "Trigger an action",
+            action: function(o, callback) {
+                alert("Opening cities");
+                window.catex.workspace.emitCommand(OpenCitiesCommand)
+                callback();
+            }
+        },
     ],
     webservices: [
         {
             id: "cs1-id",
-            label: "Custom service 1",
-            title: "A custom services that provides a list of services",
+            label: "Lucerna site",
+            title: "A custom service that provides a list assets located in Lucerna",
             action: function(o, callback) {
                 if (typeof callback === "function") {
                     const results = localDatasets(o);
@@ -54,7 +64,7 @@ window.catexcompanion.app = {
         },
         {
             id: "cs2-id",
-            label: "Custom service 2",
+            label: "My company Data",
             title: "A custom services that provides a list of services from REST API",
             action: function(params, callback) {
                 if (typeof callback === "function") {
@@ -89,7 +99,7 @@ closeButton.onclick = ()=> {
     elementCompanion.classList.add("make-invisible")
 }
 
-window.catexcompanion.featureLayer = {
+window.catex.featureLayer = {
     onFeatureSelect: [
         {
             label: "Double population of 1990",
@@ -123,7 +133,7 @@ window.catexcompanion.featureLayer = {
     ]
 }
 
-window.catexcompanion.ogc3dtiles = {
+window.catex.ogc3dtiles = {
     onFeatureSelect: [
         {
             label: "Say Hello",
@@ -168,7 +178,7 @@ window.catexcompanion.ogc3dtiles = {
     ] 
 }
 
-window.catexcompanion.featureLayer.onRender = (layer, feature, style, map, paintState) =>{
+window.catex.featureLayer.onRender = (layer, feature, style, map, paintState) =>{
    const val = feature.properties.POP1996;
    if (!val) return style;
 
@@ -209,7 +219,7 @@ window.catexcompanion.featureLayer.onRender = (layer, feature, style, map, paint
    return clone;
 }
 
-window.catexcompanion.data = {
+window.catex.data = {
     transformers: [
         {
             name: "CSV",
@@ -250,18 +260,25 @@ window.catexcompanion.data = {
     ] 
 }
 
-window.catexcompanion.map = {
+window.catex.map = {
+    onMouseClick:[
+        {
+            action: function(o, callback) {
+                console.log("Mouse click on map:", o);
+            } 
+        },
+   ],
    onMapMove:[
         {
             action: function(o, callback) {
-                console.log(o);
+                console.log("Map moved:", o);
             } 
         },
    ],
    onMousePoint:[
         {
             action: function(o, callback) {
-                console.log(o);
+                console.log("Mouse moved to:", o);
             } 
         },
    ]
@@ -354,35 +371,29 @@ function localDatasets(query) {
     const rows = [
         {
             id: "1",
-            label: "USA Cities",
-            title: "A basic WFS",
-            type: "WFS",
-            endpoint: "https://sampleservices.luciad.com/wfs",
-            layers: ["cities"],
+            label: "Lucerna Panoramas",
+            title: "PANORAMA",
+            type: "PANORAMA",
+            endpoint: "https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json",
+            options: {
+                requestHeaders: undefined,
+                requestParameters: undefined,
+                credentials: undefined                                
+            }
         },
         {
             id: "1.2",
-            label: "Los Angeles Imagery",
-            title: "A basic WMS",
-            type: "WMS",
-            endpoint: "https://sampleservices.luciad.com/wms",
-            layers: ["4ceea49c-3e7c-4e2d-973d-c608fb2fb07e"],
-        },
-        {
-            id: "2",
-            label: "Marselli command",
-            title: "A layer created with command",
+            label: "Lucerna Mesh",
+            title: "3D Tiles",
             type: "MESH",
-            command: SampleCommand
+            endpoint: "https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json",
+            layers: [],
+            options: {
+                requestHeaders: undefined,
+                requestParameters: undefined,
+                credentials: undefined                                
+            }
         },
-        
-        {
-            id: "3",
-            label: "Factory",
-            title: "Draco compressed dataset with features",
-            type: "MESH",
-            endpoint: "https://sampledata.luciad.com/data/ogc3dtiles/outback_PBR_Draco/tileset.json",            
-        },      
     ]
     const matches = rows.filter(r=>r.label.toLowerCase().indexOf(query.search.toLowerCase())!==-1);
     const pageNumber = Number(query.pageNumber);
@@ -431,6 +442,54 @@ const SampleCommand = {
         "content": "{\"fileformat\":\"TridentWorkspace\",\"version\":\"1.0\",\"pictureSettings\":{\"saturation\":100,\"brightness\":100,\"contrast\":100,\"sepia\":0,\"grayscale\":0,\"invert\":0,\"enabled\":false},\"ecdisSettings\":{\"colorScheme\":\"day\",\"sounding\":false,\"displayCategory\":\"standard\",\"useTwoShades\":true,\"shallowContour\":2,\"safetyContour\":30,\"deepContour\":30,\"beam\":10,\"airDraft\":10,\"displayIsolatedDangersInShallowWater\":false,\"displayShallowPattern\":false,\"displaySoundings\":false},\"timeManager\":{\"range\":{\"min\":1697451129,\"max\":1697537529},\"interval\":{\"min\":1697490729,\"max\":1697497929},\"step\":1,\"currentTime\":1697494329},\"currentlayer\":\"d24fe2ce-ce0e-4e94-8513-fc30727cf5cd\",\"layertree\":{\"action\":\"root\",\"layer\":{\"label\":\"root\",\"id\":\"d53a1165-5c08-43c7-ad24-5d9cc7b70705\",\"visible\":true,\"labeled\":true,\"treeNodeType\":\"LAYER_GROUP\"},\"nodes\":[{\"action\":\"BingmapsLayer\",\"layer\":{\"label\":\"Bingmaps satellite\",\"id\":\"a9ba178d-256d-42de-9852-0655ed47c68a\",\"parent_id\":\"d53a1165-5c08-43c7-ad24-5d9cc7b70705\",\"visible\":true,\"editable\":false,\"treeNodeType\":\"LAYER_RASTER\"},\"model\":{\"imagerySet\":\"Aerial\",\"useproxy\":true}},{\"action\":\"GridLayer\",\"layer\":{\"label\":\"Grid\",\"id\":\"Grid\",\"parent_id\":\"d53a1165-5c08-43c7-ad24-5d9cc7b70705\",\"visible\":true,\"labeled\":true,\"editable\":false,\"treeNodeType\":\"LAYER_GRID\"}},{\"action\":\"OGC3DTilesLayer\",\"layer\":{\"selectable\":true,\"transparency\":false,\"idProperty\":\"FeatureID\",\"label\":\"Factory\",\"qualityFactor\":0.6,\"loadingStrategy\":1,\"offsetTerrain\":false,\"isDrapeTarget\":false,\"minScale\":null,\"maxScale\":null,\"visualProperties\":{\"currentFilter\":0,\"currentStyle\":0,\"filterActive\":false,\"filters\":[],\"scale\":{\"range\":{\"minimum\":0.4,\"maximum\":2},\"value\":1},\"scalingMode\":{\"value\":0},\"styleActive\":false,\"styles\":[],\"type\":\"PointCloud\"},\"meshStyle\":{\"pbrSettings\":{\"enabled\":false,\"imageBasedLighting\":true,\"directionalLighting\":true,\"lightIntensity\":0,\"material\":{\"metallicFactor\":1,\"roughnessFactor\":1}}},\"id\":\"d24fe2ce-ce0e-4e94-8513-fc30727cf5cd\",\"parent_id\":\"d53a1165-5c08-43c7-ad24-5d9cc7b70705\",\"visible\":true,\"editable\":false,\"treeNodeType\":\"LAYER_OGC3D\"},\"model\":{\"url\":\"https://sampledata.luciad.com/data/ogc3dtiles/outback_PBR_Draco/tileset.json\",\"credentials\":false,\"beforeProxy\":\"https://sampledata.luciad.com/data/ogc3dtiles/outback_PBR_Draco/tileset.json\"}}]},\"projection\":\"EPSG:4978\",\"state\":{\"reference\":\"EPSG:4978\",\"viewSize\":[1920,1031],\"transformation2D\":{\"worldOrigin\":[475254.81776997104,5683680.565177331],\"viewOrigin\":[960,515.5],\"scale\":[142.26749266294303,142.26749266294303],\"rotation\":308.45789101079424},\"transformation3D\":{\"eyePointX\":3986355.573019863,\"eyePointY\":297598.8924680033,\"eyePointZ\":4953377.7138468,\"yaw\":308.4580268536007,\"pitch\":-22.017181098120954,\"roll\":0}},\"workspaceExportOptions\":{\"saveAnnotations\":true,\"removeCredentials\":false}}",
         "filename": "workspace (9).tws",
         "source": "file"
+      }
+    }
+  }
+
+  const OpenCitiesCommand = {
+    "action": 10,
+    "parameters": {
+      "action": "WFSLayer",
+      "autozoom": true,
+      "fitBounds": {
+        "coordinates": [
+          -157.80423386786342,
+          86.78634273572683,
+          21.31724960138882,
+          39.86111879722236
+        ],
+        "reference": "CRS:84"
+      },
+      "layer": {
+        "editable": false,
+        "label": "City 125",
+        "painterSettings": {},
+        "selectable": true,
+        "visible": true,
+        "minScale": null,
+        "maxScale": null,
+        "loadingStrategy": "LoadSpatially",
+        "maxFeatures": 500
+      },
+      "model": {
+        "generateIDs": false,
+        "outputFormat": "json",
+        "swapAxes": false,
+        "swapQueryAxes": false,
+        "serviceURL": "https://sampleservices.luciad.com:443/ogc/wfs/sampleswfs",
+        "postServiceURL": "https://sampleservices.luciad.com:443/ogc/wfs/sampleswfs",
+        "tmp_reference": "urn:ogc:def:crs:OGC:1.3:CRS84",
+        "typeName": "cities",
+        "versions": [
+          "2.0.0"
+        ],
+        "useProxy": false,
+        "beforeProxy": "https://sampleservices.luciad.com/wfs",
+        "credentials": false,
+        "requestHeaders": {},
+        "methods": [
+          "POST"
+        ]
       }
     }
   }
