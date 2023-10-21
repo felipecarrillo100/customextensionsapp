@@ -371,16 +371,11 @@ function CSVToArray( strData, strDelimiter ){
 function localDatasets(query) {
     const rows = [
         {
-            id: "1",
+            id: "1.1",
             label: "Lucerna Panoramas",
             title: "PANORAMA",
             type: "PANORAMA",
             endpoint: "https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json",
-            options: {
-                requestHeaders: undefined,
-                requestParameters: undefined,
-                credentials: undefined                                
-            }
         },
         {
             id: "1.2",
@@ -388,12 +383,13 @@ function localDatasets(query) {
             title: "3D Tiles",
             type: "MESH",
             endpoint: "https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json",
-            layers: [],
-            options: {
-                requestHeaders: undefined,
-                requestParameters: undefined,
-                credentials: undefined                                
-            }
+        },        
+        {
+            id: "2",
+            label: "Europe Cities",
+            title: "3D Tiles",
+            type: "CSV",
+            command: CommandOpenCSV,
         },
     ]
     const matches = rows.filter(r=>r.label.toLowerCase().indexOf(query.search.toLowerCase())!==-1);
@@ -502,6 +498,31 @@ const SampleCommand = {
         "content": "{\"fileformat\":\"TridentWorkspace\",\"version\":\"1.0\",\"pictureSettings\":{\"saturation\":100,\"brightness\":100,\"contrast\":100,\"sepia\":0,\"grayscale\":0,\"invert\":0,\"enabled\":false},\"ecdisSettings\":{\"colorScheme\":\"day\",\"sounding\":false,\"displayCategory\":\"standard\",\"useTwoShades\":true,\"shallowContour\":2,\"safetyContour\":30,\"deepContour\":30,\"beam\":10,\"airDraft\":10,\"displayIsolatedDangersInShallowWater\":false,\"displayShallowPattern\":false,\"displaySoundings\":false},\"timeManager\":{\"range\":{\"min\":1697451129,\"max\":1697537529},\"interval\":{\"min\":1697490729,\"max\":1697497929},\"step\":1,\"currentTime\":1697494329},\"currentlayer\":\"efc23855-0eda-47f6-9cef-58077a0aac5c\",\"layertree\":{\"action\":\"root\",\"layer\":{\"label\":\"root\",\"id\":\"64f60ecc-4b09-4d1b-bb6a-bb7b3f318072\",\"visible\":true,\"labeled\":true,\"treeNodeType\":\"LAYER_GROUP\"},\"nodes\":[{\"action\":\"BingmapsLayer\",\"layer\":{\"label\":\"Bingmaps satellite\",\"id\":\"a9ba178d-256d-42de-9852-0655ed47c68a\",\"parent_id\":\"64f60ecc-4b09-4d1b-bb6a-bb7b3f318072\",\"visible\":true,\"editable\":false,\"treeNodeType\":\"LAYER_RASTER\"},\"model\":{\"imagerySet\":\"Aerial\",\"useproxy\":true}},{\"action\":\"OGC3DTilesLayer\",\"layer\":{\"selectable\":true,\"transparency\":false,\"idProperty\":\"FeatureID\",\"label\":\"Lucerna Mesh\",\"qualityFactor\":0.6,\"loadingStrategy\":1,\"offsetTerrain\":false,\"isDrapeTarget\":false,\"minScale\":null,\"maxScale\":null,\"visualProperties\":{\"currentFilter\":0,\"currentStyle\":0,\"filterActive\":false,\"filters\":[],\"scale\":{\"range\":{\"minimum\":0.4,\"maximum\":2},\"value\":1},\"scalingMode\":{\"value\":0},\"styleActive\":false,\"styles\":[],\"type\":\"3DMesh\"},\"meshStyle\":{\"pbrSettings\":{\"enabled\":false,\"imageBasedLighting\":true,\"directionalLighting\":true,\"lightIntensity\":0,\"material\":{\"metallicFactor\":1,\"roughnessFactor\":1}}},\"id\":\"e4666275-6b55-4c18-9056-7e1590032e1a\",\"parent_id\":\"64f60ecc-4b09-4d1b-bb6a-bb7b3f318072\",\"visible\":true,\"editable\":false,\"treeNodeType\":\"LAYER_OGC3D\"},\"model\":{\"url\":\"https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json\",\"credentials\":false,\"beforeProxy\":\"https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json\"}},{\"action\":\"FusionPanoramaLayer\",\"layer\":{\"iconHeightOffset\":2,\"editable\":false,\"selectable\":false,\"label\":\"Lucerna Panoramas\",\"minScale\":null,\"maxScale\":null,\"id\":\"efc23855-0eda-47f6-9cef-58077a0aac5c\",\"parent_id\":\"64f60ecc-4b09-4d1b-bb6a-bb7b3f318072\",\"visible\":true,\"treeNodeType\":\"LAYER_FEATURE\"},\"model\":{\"url\":\"https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json\",\"crs\":\"urn:ogc:def:crs:EPSG::4326\",\"credentials\":false,\"beforeProxy\":\"https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json\"}},{\"action\":\"GridLayer\",\"layer\":{\"label\":\"Grid\",\"id\":\"Grid\",\"parent_id\":\"64f60ecc-4b09-4d1b-bb6a-bb7b3f318072\",\"visible\":true,\"labeled\":true,\"editable\":false,\"treeNodeType\":\"LAYER_GRID\"}}]},\"projection\":\"EPSG:4978\",\"state\":{\"reference\":\"EPSG:4978\",\"viewSize\":[1920,1031],\"transformation2D\":{\"worldOrigin\":[925307.1654431189,5212390.247407427],\"viewOrigin\":[960,515.5],\"scale\":[170.53408525271414,170.53408525271414],\"rotation\":25.721540880796965},\"transformation3D\":{\"eyePointX\":4308539.327159931,\"eyePointY\":629472.5787574812,\"eyePointZ\":4645620.121655806,\"yaw\":25.72144146207324,\"pitch\":-12.407822189162829,\"roll\":0}},\"workspaceExportOptions\":{\"saveAnnotations\":true,\"removeCredentials\":false}}",
         "filename": "workspace (10).tws",
         "source": "file"
+      }
+    }
+  }
+
+  const CommandOpenCSV = {
+    "action": 10,
+    "parameters": {
+      "action": "MemoryFeatureLayer",
+      "autozoom": true,
+      "layer": {
+        "label": "cities.csv",
+        "selectable": true,
+        "editable": false,
+        "minScale": null,
+        "maxScale": null
+      },
+      "model": {
+        "url": "http://localhost:5000/csv/cities.csv",
+        "transformer": "CSV",
+        "beforeProxy": "http://localhost:5000/csv/cities.csv",
+        "format": "GeoJSON",
+        "crs": "CRS:84",
+        "swapAxes": false,
+        "credentials": false,
+        "requestHeaders": {}
       }
     }
   }
