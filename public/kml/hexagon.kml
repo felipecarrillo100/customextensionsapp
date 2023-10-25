@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"
+     xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+  <Document>
+    <name>Hexagon Leuven</name>
+    <open>1</open>
+
+    <StyleMap id="green_map">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#green_n</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#green_h</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="green_n">
+      <LineStyle>
+        <color>ff26cfc9</color>
+        <width>1</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>cc26cfc9</color>
+      </PolyStyle>
+    </Style>
+    <Style id="green_h">
+      <LineStyle>
+        <color>ff26cfc9</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff26cfc9</color>
+      </PolyStyle>
+    </Style>
+
+    <StyleMap id="blue_map">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#blue_n</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#blue_h</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="blue_n">
+      <LineStyle>
+        <color>ff513e00</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>cc513e00</color>
+      </PolyStyle>
+    </Style>
+    <Style id="blue_h">
+      <LineStyle>
+        <color>ff513e00</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff513e00</color>
+      </PolyStyle>
+    </Style>
+
+    <StyleMap id="gray_map">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#gray_n</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#gray_h</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="gray_n">
+      <LineStyle>
+        <color>ff888888</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>cc888888</color>
+      </PolyStyle>
+    </Style>
+    <Style id="gray_h">
+      <LineStyle>
+        <color>ff888888</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff888888</color>
+      </PolyStyle>
+    </Style>
+
+
+    <Style id="red">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+        </Icon>
+        <hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>5</width>
+      </LineStyle>
+    </Style>
+
+    <StyleMap id="star_map">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#star_n</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#star_h</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="star_n">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/wht-stars.png</href>
+        </Icon>
+        <hotSpot x="32" y="0" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+      <ListStyle>
+        <ItemIcon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/wht-stars.png</href>
+        </ItemIcon>
+      </ListStyle>
+    </Style>
+    <Style id="star_h">
+      <IconStyle>
+        <scale>1.5</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/wht-stars.png</href>
+        </Icon>
+        <hotSpot x="32" y="0" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+      <ListStyle>
+        <ItemIcon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/wht-stars.png</href>
+        </ItemIcon>
+      </ListStyle>
+    </Style>
+
+
+    <Folder>
+      <name>Hexagon Leuven</name>
+      <open>1</open>
+
+      <LookAt>
+        <longitude>4.66861974574995</longitude>
+        <latitude>50.86524723269719</latitude>
+        <altitude>0</altitude>
+        <range>195.1929787751115</range>
+        <tilt>0</tilt>
+        <heading>0.2074493756020408</heading>
+        <altitudeMode>relativeToGround</altitudeMode>
+      </LookAt>
+
+      <ScreenOverlay>
+        <name>Hexagon logo</name>
+        <visibility>1</visibility>
+        <Icon>
+          <href>images/hexagon_logo.png</href>
+        </Icon>
+        <overlayXY x="0" y="-1" xunits="fraction" yunits="fraction"/>
+        <screenXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+        <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+        <size x="0" y="0" xunits="fraction" yunits="fraction"/>
+      </ScreenOverlay>
+
+      <Placemark>
+        <name>Hexagon Leuven Building 1</name>
+        <description>This is Hexagon Leuven Building 1.</description>
+        <styleUrl>#green_map</styleUrl>
+        <Polygon>
+          <extrude>1</extrude>
+          <tessellate>1</tessellate>
+          <altitudeMode>relativeToGround</altitudeMode>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                   4.668907733237566,50.86473520953414,15 4.669356525739325,50.86482151578448,15
+                   4.66944714730218,50.86464027265876,15 4.669672981990565,50.864689179533954,15
+                   4.669754972928386,50.86453958203337,15 4.6692846038640425,50.8644705370331,15
+                   4.669214120426267,50.864602873283616,15 4.66899547792541,50.864558281720946,15
+                   4.668907733237566,50.86473520953414,15
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>Hexagon Leuven Building 2</name>
+        <description>This is Hexagon Leuven Building 2.</description>
+        <styleUrl>#blue_map</styleUrl>
+        <Polygon>
+          <extrude>1</extrude>
+          <tessellate>1</tessellate>
+          <altitudeMode>relativeToGround</altitudeMode>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                4.66888746,50.86506328,15 4.6694204,50.86517735,15 4.66961675,50.86480523,15
+                4.669405442062241,50.864756608717755,15 4.669347473030764,50.86486693687443,15
+                4.669319423499404,50.86486132696816,15 4.6692801541555005,50.864945475562244,15
+                4.6689828291230855,50.86488937649953,15 4.66888746,50.86506328,15
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>Arenberg Campus Building 1</name>
+        <description>Part of the Arenberg Campus</description>
+        <styleUrl>#gray_map</styleUrl>
+        <Polygon>
+          <extrude>1</extrude>
+          <tessellate>1</tessellate>
+          <altitudeMode>relativeToGround</altitudeMode>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                4.668357677833991,50.865239702904056,15 4.6680528729265465,50.86517799393507,15
+                4.668024823395186,50.86523222302903,15 4.667633999924905,50.865146204466186,15
+                4.667877095863357,50.86467871227685,15 4.668352067927719,50.86477782062099,15
+                4.668286619021212,50.864891888715185,15 4.667993033926312,50.8648301797462,15
+                4.667882705769629,50.86501904659069,15 4.66809962214548,50.865063925840865,15
+                4.668417516834225,50.86513124471613,15 4.668357677833991,50.865239702904056,15
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>Arenberg Campus Building 2</name>
+        <description>Part of the Arenberg Campus</description>
+        <styleUrl>#gray_map</styleUrl>
+        <Polygon>
+          <extrude>1</extrude>
+          <tessellate>1</tessellate>
+          <altitudeMode>relativeToGround</altitudeMode>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                4.668580204116112,50.865348161091966,15 4.668656872835163,50.865177993935056,15
+                4.668997207148996,50.8652509227166,15 4.668963547711364,50.865314501654346,15
+                4.669315101837742,50.86538930040463,15 4.669259002775022,50.8654958886238,15
+                4.668580204116112,50.865348161091966,15
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>Hexagon Office</name>
+        <description><![CDATA[<img src="images/hexagon.jpg" width="365" height="125"/>
+                     <p width="200px">
+                     Hexagon is a global technology group headquartered in Sweden, focused on precision
+                     measuring technologies. Hexagon's Geospatial division provides software solutions for building state-of-the-art Situational Awareness systems.
+                     Their mission is to provide best-of-class visualization, data fusion, and advanced data processing
+                     and analysis software, to help its customers turn superior Situational Awareness to their strategic competitive advantage.
+                     </p>
+
+                     <p>
+                     <b>Hexagon AB</b><br/>
+                     Arenberg Science Park<br/>
+                     Gaston Geenslaan 11<br/>
+                     B-3001 Leuven<br/>
+                     Belgium<br/>
+                     Telephone: +32 16 23 95 91<br/>
+                     Fax: +32 16 29 34 22<br/>
+                     </p>
+
+                     <a href="http://www.hexagon.com">Visit the Hexagon website</a>]]></description>
+        <LookAt>
+          <longitude>4.668798876873007</longitude>
+          <latitude>50.8652252664978</latitude>
+          <altitude>0</altitude>
+          <range>258.913173638407</range>
+          <tilt>0</tilt>
+          <heading>0.0001841209176639188</heading>
+          <altitudeMode>relativeToGround</altitudeMode>
+        </LookAt>
+        <styleUrl>#star_map</styleUrl>
+        <Point>
+          <altitudeMode>relativeToGround</altitudeMode>
+          <coordinates>4.668704263534,50.86491760816611,10</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>Route to Hexagon</name>
+        <description>Leave the Koning Boudewijnlaan and turn right onto the Gaston Geenslaan. You
+          will see the Hexagon building in front of you.
+        </description>
+        <styleUrl>#red</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            4.669279835204325,50.86482410774819,0 4.669254959490214,50.86487104774431,0
+            4.668800858242267,50.86479973649804,0 4.668464044208018,50.86540920068112,0
+            4.669361247029901,50.86561021078204,0 4.669431418419608,50.8656571011574,0
+            4.669455626930977,50.86569415355416,0 4.669468304894359,50.8657595094155,0
+            4.669448004526932,50.86581451420363,0 4.669382313442484,50.86585920902117,0
+            4.669283636549364,50.86589599655202,0 4.669151243036977,50.86589897422985,0
+            4.669018562059381,50.86588319706672,0 4.668811312372743,50.86584383407315,0
+            4.668562729745275,50.86579137064908,0 4.668156819326855,50.86571017578157,0
+            4.667417619140254,50.86555511320124,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+
+    </Folder>
+  </Document>
+</kml>

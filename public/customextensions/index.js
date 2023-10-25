@@ -391,6 +391,13 @@ function localDatasets(query) {
             type: "CSV",
             command: CommandOpenCSV,
         },
+        {
+            id: "3",
+            label: "KML Hexagon Leuven",
+            title: "KML File",
+            type: "KML",
+            command: CommandOpenKML,
+        },
     ]
     const matches = rows.filter(r=>r.label.toLowerCase().indexOf(query.search.toLowerCase())!==-1);
     const pageNumber = Number(query.pageNumber);
@@ -521,6 +528,27 @@ const SampleCommand = {
         "format": "GeoJSON",
         "crs": "CRS:84",
         "swapAxes": false,
+        "credentials": false,
+        "requestHeaders": {}
+      }
+    }
+  }
+
+  const CommandOpenKML = {
+    "action": 10,
+    "parameters": {
+      "action": "KMLLayer",
+      "autozoom": true,
+      "layer": {
+        "label": "luciad.kml",
+        "selectable": true,
+        "editable": false,
+        "minScale": null,
+        "maxScale": null
+      },
+      "model": {
+        "url": "http://localhost:5000/kml/luciad.kml",
+        "beforeProxy": "http://localhost:5000/kml/luciad.kml",
         "credentials": false,
         "requestHeaders": {}
       }

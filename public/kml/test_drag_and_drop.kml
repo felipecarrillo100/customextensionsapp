@@ -1,0 +1,11 @@
+<NetworkLink id="KML-test-kml">
+  <name>test.kml</name>
+  <visibility>1</visibility>
+  <open>1</open>
+  <description>A reference to the test.kml file</description>
+  <refreshVisibility>0</refreshVisibility>
+  <flyToView>0</flyToView>
+  <Link>
+    <href>/sampledata/kml/test.kml</href>
+  </Link>
+</NetworkLink>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"
+     xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+  <Document>
+    <name>Luciad and Leuven</name>
+    <open>1</open>
+
+    <StyleMap id="green_map">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#green_n</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#green_h</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="green_n">
+      <LineStyle>
+        <color>ff26cfc9</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>cc26cfc9</color>
+      </PolyStyle>
+    </Style>
+    <Style id="green_h">
+      <LineStyle>
+        <color>ff26cfc9</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff26cfc9</color>
+      </PolyStyle>
+    </Style>
+
+    <StyleMap id="blue_map">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#blue_n</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#blue_h</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="blue_n">
+      <LineStyle>
+        <color>ff513e00</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>cc513e00</color>
+      </PolyStyle>
+    </Style>
+    <Style id="blue_h">
+      <LineStyle>
+        <color>ff513e00</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff513e00</color>
+      </PolyStyle>
+    </Style>
+
+    <StyleMap id="gray_map">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#gray_n</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#gray_h</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="gray_n">
+      <LineStyle>
+        <color>ff888888</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>cc888888</color>
+      </PolyStyle>
+    </Style>
+    <Style id="gray_h">
+      <LineStyle>
+        <color>ff888888</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff888888</color>
+      </PolyStyle>
+    </Style>
+
+    <Style id="blue">
+      <IconStyle>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+        </Icon>
+        <hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+      <LineStyle>
+        <color>ffff0000</color>
+        <width>5</width>
+      </LineStyle>
+    </Style>
+
+    <NetworkLink id="Hexagon-Leuven-Network-Link">
+      <name>Luciad</name>
+      <visibility>1</visibility>
+      <open>1</open>
+      <description>Luciad Headquarters</description>
+      <refreshVisibility>0</refreshVisibility>
+      <flyToView>0</flyToView>
+      <Link>
+        <href>/sampledata/kml/hexagon.kml</href>
+      </Link>
+    </NetworkLink>
+
+    <NetworkLink id="Leuven-TownHall-Network-Link">
+      <name>Leuven Town Hall</name>
+      <visibility>1</visibility>
+      <open>1</open>
+      <description>Leuven Town Hall</description>
+      <refreshVisibility>0</refreshVisibility>
+      <flyToView>0</flyToView>
+      <Link>
+        <href>/sampledata/kml/townhall.kml</href>
+      </Link>
+    </NetworkLink>
+
+
+    <Placemark>
+      <name>Route to the center of Leuven</name>
+      <description>Follow the Koning Boudewijnlaan until you reach the Tervuursevest. Turn right
+      onto the Tervuursevest, and follow it until the Naamsestraat. Turn left, and keep following
+      this road. This road will bring you right into the center of Leuven.
+      </description>
+      <styleUrl>#blue</styleUrl>
+      <LineString>
+        <tessellate>1</tessellate>
+        <coordinates>
+        4.700823816867618,50.8788908580694,0 4.7008137919246815,50.87839963586553,0
+        4.70059324318009,50.877642752673864,0 4.700513043636601,50.877291879671105,0
+        4.7003075323064145,50.87574803845897,0 4.699931596946314,50.87424429701858,0
+        4.699856409874293,50.872976141737176,0 4.699550649114747,50.871918510257444,0
+        4.699535611700343,50.87139721322477,0 4.699375212613367,50.87068544227631,0
+        4.699179726226117,50.86959773596777,0 4.698964189952992,50.86912656364977,0
+        4.698648404250508,50.86877569064701,0 4.698294172891864,50.86887734356838,0
+        4.697777437208227,50.86895358325942,0 4.694736320643877,50.869800690937495,0
+        4.693677436046263,50.870122591855136,0 4.69117846839589,50.87165585675248,0
+        4.69083725721137,50.87169665827023,0 4.690683255470775,50.87170601245004,0
+        4.690463774471584,50.87168821669335,0 4.690342170134195,50.87163779538272,0
+        4.690087097621622,50.871566612355956,0 4.6876961487313835,50.87024331988841,0
+        4.686082132918686,50.86937114985299,0 4.684603453835625,50.868769653276836,0
+        4.683024525323204,50.86832855578765,0 4.681405497039038,50.86803281997103,0
+        4.678974448377057,50.8677872088691,0 4.6773103078496785,50.86762179731065,0
+        4.674934396373844,50.86718069982145,0 4.671926913493043,50.86652907853061,0
+        4.669464201096799,50.866047844959034,0
+        </coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>
