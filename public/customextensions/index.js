@@ -22,11 +22,13 @@ window.catex.app = {
             }
         },       
         {
-            id: "navac-2",
-            label: "Execute Hello World",
+            id: "navac-2.1",
+            label: "Say Hello to me",
             title: "Trigger an action",
             action: function(o, callback) {
-                console.log("Hello world!!!!");
+                window.catex.app.getUserInfo().then((user)=>{
+                    alert(`Hello user ${user.username}`);
+                });
                 callback();
             }
         },
@@ -50,6 +52,16 @@ window.catex.app = {
                 callback();
             }
         },
+        {
+            id: "navac-5",
+            label: "Remove Grid Layer",
+            title: "Trigger an action",
+            action: function(o, callback) {
+                console.log(window.catex.map.getMainMap());
+                window.catex.map.deleteLayerByID("Grid")
+                callback();
+            }
+        },        
     ],
     webservices: [
         {
@@ -125,8 +137,7 @@ window.catex.featureLayer = {
                 .then(jsonData => {
                       callback({
                         ...o.feature.properties, 
-                        IMAGE: jsonData.message,
-                        VIDEO: 'https://www.youtube.com/watch?v=VAH-ixdFWFs'
+                        IMAGE: jsonData.message
                     })
                     })            
             } 
@@ -223,6 +234,18 @@ window.catex.featureLayer.onRender = (layer, feature, style, map, paintState) =>
 window.catex.data = {
     transformers: [
         {
+            name: "Custom API",
+            extensions: "json",
+            transform: (dataStr) => {
+                const dataArray = JSON.parse(dataStr);
+                const geojsonArray = dataArray.map(row=>{
+                    const {id, geom, ...properties} = row;
+                    return {id, type:"Feature", geometry: geom, properties }
+                });
+                return JSON.stringify(geojsonArray);
+            }
+        },
+        {
             name: "CSV",
             extensions: "csv, txt",
             transform: (dataStr) => {
@@ -266,20 +289,26 @@ window.catex.map = {
         {
             action: function(o, callback) {
                 console.log("Mouse click on map:", o);
+                console.log("Mouse click on map at:", window.catex.utils.pointToArray(o.point));
+                if (o.feature) {
+                    console.log("Feature:", window.catex.utils.shapeToGeoJSON(o.feature.shape));
+                }
             } 
         },
    ],
    onMapMove:[
         {
             action: function(o, callback) {
-                console.log("Map moved:", o);
+                console.log("Map moved :", o);
+                console.log("Map moved to bounding box:", window.catex.utils.boundingBox(o.bounds));
             } 
         },
    ],
    onMousePoint:[
         {
             action: function(o, callback) {
-                console.log("Mouse moved to:", o);
+                console.log("Mouse moved :", o);
+                console.log("Mouse moved to:", window.catex.utils.pointToArray(o.point));
             } 
         },
    ]
