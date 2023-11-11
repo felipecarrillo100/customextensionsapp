@@ -11,6 +11,17 @@ window.catex.app = {
         window.catex.workspace.emitCommand(CommandInitialWorkspace)
     },
     navbarActions: [
+        
+        {
+            id: "navac-0",
+            label: "Open JOSN URL",
+            title: "Trigger an action",
+            action: function(o, callback) {
+                const command = SampleCommand;
+                window.catex.workspace.emitCommand(CommandOpenJSONURL);
+                callback();
+            }
+        },
         {
             id: "navac-1",
             label: "Open Marseille Layer",
@@ -618,6 +629,32 @@ const SampleCommand = {
         "beforeProxy": "http://localhost:5000/kml/luciad.kml",
         "credentials": false,
         "requestHeaders": {}
+      }
+    }
+  }
+
+  const CommandOpenJSONURL = {
+    "action": 10,
+    "parameters": {
+      "action": "MemoryFeatureLayer",
+      "autozoom": true,
+      "layer": {
+        "label": "world.json",
+        "selectable": true,
+        "editable": false,
+        "minScale": null,
+        "maxScale": null
+      },
+      "model": {
+        "url": "http://localhost:5000/json/world.json",
+        "beforeProxy": "http://localhost:5000/json/world.json",
+        "format": "GeoJSON",
+        "crs": "CRS:84",
+        "swapAxes": false,
+        "credentials": false,
+        "requestHeaders": {
+            "Authorization":"Bearer 6SY5X4we9siTCBoxn6YDBg"
+        }
       }
     }
   }
