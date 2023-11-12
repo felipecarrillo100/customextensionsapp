@@ -142,6 +142,56 @@ window.catex.featureLayer = {
                 }
             } 
         },
+        {
+            label: "Voronoi",
+            title: "Calculate voronoi",
+            action: function(o, callback) {
+                if (typeof callback === "function") {
+                    if (o.features) {
+                        if (o.features.length>1) {
+                            const featureCollection = {
+                                type: "FeatureCollection",
+                                features: o.features.map(f=>({
+                                    "type":"Feature",
+                                    "properties":{},
+                                    "geometry":{
+                                        "type":"Point",
+                                        "coordinates":[f.shape.focusPoint.x,f.shape.focusPoint.y]
+                                    }
+                                }))
+                              }
+                            const newCommand = TurfJSONURL('voronoi', featureCollection, 'Voronoi');
+                            window.catex.workspace.emitCommand(newCommand);
+                        }
+                    }                    
+                }
+            } 
+        },
+        {
+            label: "Convex Hull",
+            title: "Calculate Convex Hull",
+            action: function(o, callback) {
+                if (typeof callback === "function") {
+                    if (o.features) {
+                        if (o.features.length>1) {
+                            const featureCollection = {
+                                type: "FeatureCollection",
+                                features: o.features.map(f=>({
+                                    "type":"Feature",
+                                    "properties":{},
+                                    "geometry":{
+                                        "type":"Point",
+                                        "coordinates":[f.shape.focusPoint.x,f.shape.focusPoint.y]
+                                    }
+                                }))
+                              }
+                            const newCommand = TurfJSONURL('convex', featureCollection, 'Convex Hull');
+                            window.catex.workspace.emitCommand(newCommand);
+                        }
+                    }                    
+                }
+            } 
+        },
     ],
     onFeatureSelect: [
         {
@@ -652,9 +702,35 @@ const SampleCommand = {
         "crs": "CRS:84",
         "swapAxes": false,
         "credentials": false,
-        "requestHeaders": {
-            "Authorization":"Bearer 6SY5X4we9siTCBoxn6YDBg"
-        }
+        "requestHeaders": {}
       }
     }
   }
+
+  const TurfJSONURL = (algorthm, featureCollection, label) => ({
+    "action": 10,
+    "parameters": {
+      "action": "MemoryFeatureLayer",
+      "autozoom": true,
+      "layer": {
+        "label": label,
+        "selectable": true,
+        "editable": false,
+        "minScale": null,
+        "maxScale": null
+      },
+      "model": {
+        "url": `http://localhost:5000/api/turf/${algorthm}`,
+        "beforeProxy": `http://localhost:5000/api/turf/${algorthm}`,
+        method: "POST",
+        body: JSON.stringify(featureCollection),
+        "format": "GeoJSON",
+        "crs": "CRS:84",
+        "swapAxes": false,
+        "credentials": false,
+        "requestHeaders": {
+            "Content-Type": "application/json"
+        }
+      }
+    }
+  })
